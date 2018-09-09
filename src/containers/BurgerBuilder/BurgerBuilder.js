@@ -38,20 +38,43 @@ const newprice = oldprice+priceAddition;
 this.setState({
     totalPrice:newprice,
     ingredients:updatedIngredients
-
 });
+}
+
+removeIngredientHandler = (type) =>
+ {
+     const oldCount = this.state.ingredients[type];
+     const updatedCount =oldCount-1;
+     const updatedIngredients = {
+         ...this.state.ingredients
+     };
+
+     updatedIngredients[type] = updatedCount;
+     const priceDeduction= INGREDIENT_PRICE[type];
+     const oldprice = this.state.totalPrice;
+    const  newprice = oldprice+priceDeduction;
+    this.setState({
+        totalPrice:newprice,
+        ingredients:updatedIngredients
+
+    })
 
 
+}
 
-    }
+
 
     render () {
-        console.log(this.state.ingredients)
+        console.log(this.state.ingredients);
+        console.log(this.state.totalPrice);
         return (
             <Aux>
             <Burger ingredients={this.state.ingredients} />
             <BuildControls
- ingredientAdded ={this.addIngredientHandler}
+
+   ingredientAdded ={this.addIngredientHandler}
+   removeIngredient={this.removeIngredientHandler}
+
             />
 
             </Aux>
