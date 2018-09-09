@@ -19,7 +19,6 @@ return <BurgerIngredient key={igKey + i} type={igKey}/>
 if(transformedIngredients.length === 0){
     transformedIngredients= <p>Please start ingredients</p>;
 }
-
 console.log(transformedIngredients);
     return (
 <div className={classes.Burger}>
