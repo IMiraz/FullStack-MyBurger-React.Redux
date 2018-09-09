@@ -40,7 +40,6 @@ this.setState({
     ingredients:updatedIngredients
 });
 }
-
 removeIngredientHandler = (type) =>
  {
      const oldCount = this.state.ingredients[type];
