@@ -10,7 +10,6 @@ import classes from  './buildControl.css'
         >Less</button>
         <button className={classes.More}
         onClick = {props.added}>More</button>
-
 </div>
 
  );
