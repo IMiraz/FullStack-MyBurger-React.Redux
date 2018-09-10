@@ -76,6 +76,7 @@ if(oldCount <= 0) {
 
    ingredientAdded ={this.addIngredientHandler}
    removeIngredient={this.removeIngredientHandler}
+   totalprice = {this.state.totalPrice}
 
             />
 
