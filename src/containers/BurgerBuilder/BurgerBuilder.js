@@ -61,14 +61,20 @@ if(oldCount <= 0) {
 
     })
 
-
 }
 
 
 
     render () {
-        console.log(this.state.ingredients);
-        console.log(this.state.totalPrice);
+const disableInfo = {
+    ...this.state.ingredients
+};
+
+for(let key in disableInfo){
+    disableInfo[key]=disableInfo[key]<=0
+}
+
+
         return (
             <Aux>
             <Burger ingredients={this.state.ingredients} />
@@ -77,6 +83,7 @@ if(oldCount <= 0) {
    ingredientAdded ={this.addIngredientHandler}
    removeIngredient={this.removeIngredientHandler}
    totalprice = {this.state.totalPrice}
+disabled = {disableInfo}
 
             />
 
