@@ -82,7 +82,7 @@ if(oldCount <= 0) {
 
 }
 
-purchaseHandler(){
+purchaseHandler =() => {
     this.setState({purchase:true});
 
 }
