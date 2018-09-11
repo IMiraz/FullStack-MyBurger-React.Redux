@@ -24,7 +24,8 @@ class BurgerBuilder extends Component
             meat:0
         },
         totalPrice:4,
-        purchasable:false
+        purchasable:false,
+        purchase:false,
     }
 
 updatePurchaseState(ingredients) {
@@ -81,6 +82,11 @@ if(oldCount <= 0) {
 
 }
 
+purchaseHandler(){
+    this.setState({purchase:true});
+
+}
+
 
 
     render () {
@@ -96,7 +102,7 @@ for(let key in disableInfo){
 
         return (
             <Aux>
-            <Modal>
+ <Modal show={this.state.purchase}>
     <OrderSummary ingredients={this.state.ingredients} />
             </Modal>
             <Burger ingredients={this.state.ingredients} />
@@ -107,6 +113,7 @@ for(let key in disableInfo){
    totalprice = {this.state.totalPrice}
    purchasable={this.state.purchasable}
    disabled = {disableInfo}
+   orderd = {this.purchaseHandler}
 
             />
 
