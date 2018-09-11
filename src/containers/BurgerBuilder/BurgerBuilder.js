@@ -87,6 +87,11 @@ purchaseHandler =() => {
 
 }
 
+purchaseCancleHandler = () => {
+    this.setState({purchase:false});
+
+}
+
 
 
     render () {
@@ -102,7 +107,7 @@ for(let key in disableInfo){
 
         return (
             <Aux>
- <Modal show={this.state.purchase}>
+ <Modal show={this.state.purchase} modalClose={this.purchaseCancleHandler}>
     <OrderSummary ingredients={this.state.ingredients} />
             </Modal>
             <Burger ingredients={this.state.ingredients} />
