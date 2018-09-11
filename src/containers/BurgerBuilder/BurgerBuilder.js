@@ -2,7 +2,9 @@ import React, {Component} from 'react'
 
 import Aux from '../../hoc/Aux'
 import Burger from  '../../components/Burger/Burger'
-import BuildControls  from '../../components/Burger/buildControls/buildControls'
+import BuildControls  from '../../components/Burger/buildControls/buildControls';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary  from '../../components/Burger/OrderSummary/OrderSummary'
 
 
 const INGREDIENT_PRICE = {
@@ -39,8 +41,6 @@ updatePurchaseState(ingredients) {
 this.setState({purchasable:sum >0});
 
     }
-
-
 addIngredientHandler =(type) => {
 const oldCount = this.state.ingredients[type];
 const  updatedCount = oldCount+1;
@@ -71,7 +71,7 @@ if(oldCount <= 0) {
      updatedIngredients[type] = updatedCount;
      const priceDeduction= INGREDIENT_PRICE[type];
      const oldprice = this.state.totalPrice;
-    const  newprice = oldprice+priceDeduction;
+    const  newprice = oldprice-priceDeduction;
     this.setState({
         totalPrice:newprice,
         ingredients:updatedIngredients
@@ -96,6 +96,9 @@ for(let key in disableInfo){
 
         return (
             <Aux>
+            <Modal>
+    <OrderSummary ingredients={this.state.ingredients} />
+            </Modal>
             <Burger ingredients={this.state.ingredients} />
             <BuildControls
 
