@@ -115,7 +115,10 @@ for(let key in disableInfo){
  <Modal show={this.state.purchase} modalClose={this.purchaseCancleHandler}>
     <OrderSummary ingredients={this.state.ingredients}
 purchaseContinue ={this.purchaseContinuewHandler}
-purchaseCancle={this.purchaseCancleHandler} />
+purchaseCancle={this.purchaseCancleHandler}
+totalprice ={this.state.totalPrice}
+
+ />
             </Modal>
             <Burger ingredients={this.state.ingredients} />
 <BuildControls ingredientAdded ={this.addIngredientHandler}
