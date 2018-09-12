@@ -111,16 +111,12 @@ for(let key in disableInfo){
     <OrderSummary ingredients={this.state.ingredients} />
             </Modal>
             <Burger ingredients={this.state.ingredients} />
-            <BuildControls
-
-   ingredientAdded ={this.addIngredientHandler}
+<BuildControls ingredientAdded ={this.addIngredientHandler}
    removeIngredient={this.removeIngredientHandler}
    totalprice = {this.state.totalPrice}
    purchasable={this.state.purchasable}
    disabled = {disableInfo}
-   orderd = {this.purchaseHandler}
-
-            />
+   orderd = {this.purchaseHandler}/>
 
             </Aux>
 
