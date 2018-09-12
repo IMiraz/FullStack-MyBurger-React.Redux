@@ -92,6 +92,11 @@ purchaseCancleHandler = () => {
 
 }
 
+purchaseContinuewHandler = () => {
+    alert('to continue ')
+
+}
+
 
 
     render () {
@@ -108,7 +113,9 @@ for(let key in disableInfo){
         return (
             <Aux>
  <Modal show={this.state.purchase} modalClose={this.purchaseCancleHandler}>
-    <OrderSummary ingredients={this.state.ingredients} />
+    <OrderSummary ingredients={this.state.ingredients}
+purchaseContinue ={this.purchaseContinuewHandler}
+purchaseCancle={this.purchaseCancleHandler} />
             </Modal>
             <Burger ingredients={this.state.ingredients} />
 <BuildControls ingredientAdded ={this.addIngredientHandler}
