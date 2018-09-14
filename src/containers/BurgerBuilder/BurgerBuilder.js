@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import axios from '../../axios-orders'
 
 import Aux from '../../hoc/Aux'
 import Burger from  '../../components/Burger/Burger'
@@ -93,7 +94,27 @@ purchaseCancleHandler = () => {
 }
 
 purchaseContinuewHandler = () => {
-    alert('to continue ')
+
+    const order = {
+
+ingredients: this.state.ingredients,
+price:this.state.totalPrice,
+customer:{
+    name:'tanvir hasan',
+    address:{
+         street:'nikunja @2',
+         zipcode:'34543',
+         country:'bangladesh'
+    },
+    email:'tanvirhasan@gmail.com'
+},
+deliveryMethod:'fastest'
+    }
+
+    axios.post('/orders.json',order)
+    .then(respone=> console.log(respone))
+    .catch(err=>console.error(err));
+
 
 }
 
