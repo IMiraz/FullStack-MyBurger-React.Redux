@@ -6,6 +6,7 @@ import Burger from  '../../components/Burger/Burger'
 import BuildControls  from '../../components/Burger/buildControls/buildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary  from '../../components/Burger/OrderSummary/OrderSummary'
+import Spineer from '../../components/UI/Spinner/Spinner'
 
 
 const INGREDIENT_PRICE = {
@@ -27,6 +28,7 @@ class BurgerBuilder extends Component
         totalPrice:4,
         purchasable:false,
         purchase:false,
+ loading:false
     }
 
 updatePurchaseState(ingredients) {
@@ -94,6 +96,7 @@ purchaseCancleHandler = () => {
 }
 
 purchaseContinuewHandler = () => {
+    this.setState({loading:true })
 
     const order = {
 
@@ -112,16 +115,24 @@ deliveryMethod:'fastest'
     }
 
     axios.post('/orders.json',order)
-    .then(respone=> console.log(respone))
-    .catch(err=>console.error(err));
-
+    .then(respone=>this.setState({ purchase:false,loading:false,}))
+    .catch(err=>this.setState({purchase:false,loading:false}));
 
 }
 
 
 
+
     render () {
-        console.log(this.state.purchasable);
+
+        let orderSummary = <OrderSummary ingredients={this.state.ingredients}
+        purchaseContinue ={this.purchaseContinuewHandler}
+        purchaseCancle={this.purchaseCancleHandler}
+        totalprice ={this.state.totalPrice}/>
+if(this.state.loading){
+    orderSummary =<Spineer/>;
+}
+
 const disableInfo = {
     ...this.state.ingredients
 };
@@ -134,12 +145,7 @@ for(let key in disableInfo){
         return (
             <Aux>
  <Modal show={this.state.purchase} modalClose={this.purchaseCancleHandler}>
-    <OrderSummary ingredients={this.state.ingredients}
-purchaseContinue ={this.purchaseContinuewHandler}
-purchaseCancle={this.purchaseCancleHandler}
-totalprice ={this.state.totalPrice}
-
- />
+ {orderSummary}
             </Modal>
             <Burger ingredients={this.state.ingredients} />
 <BuildControls ingredientAdded ={this.addIngredientHandler}
