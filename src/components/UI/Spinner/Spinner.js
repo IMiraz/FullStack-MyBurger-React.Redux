@@ -3,10 +3,17 @@ import classes from './Spinner.css'
 
 const Spinner =(props) =>
 (
-    <div className={classes.Loading}>
-	<i></i>
-	<i></i>
-	<i></i>
+    <div>
+    <div className={classes.Lodiing}>
+    <div>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+    </div>
 </div>
 
 );
