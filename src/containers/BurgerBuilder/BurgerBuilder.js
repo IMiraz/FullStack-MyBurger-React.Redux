@@ -7,6 +7,7 @@ import BuildControls  from '../../components/Burger/buildControls/buildControls'
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary  from '../../components/Burger/OrderSummary/OrderSummary'
 import Spineer from '../../components/UI/Spinner/Spinner'
+import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler'
 
 
 const INGREDIENT_PRICE = {
@@ -163,4 +164,4 @@ for(let key in disableInfo){
 
 }
 
-export default BurgerBuilder;
+export default WithErrorHandler(BurgerBuilder, axios);
