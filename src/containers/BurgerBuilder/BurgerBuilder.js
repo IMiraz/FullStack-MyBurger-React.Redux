@@ -34,7 +34,7 @@ axios.get('https://react-myburger-miraz.firebaseio.com/ingredients.json')
         this.setState({ingredients:response.data})
         // this.setState({ingredients:res.data})
     })
-;
+    .catch(error=>{})
 
 }
 
