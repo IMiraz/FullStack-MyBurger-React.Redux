@@ -9,11 +9,11 @@ const  checkoutSummary = (props) =>
     <h1>We hope that it testy :) </h1>
      <div style={{width:'300px', height:'300px', margin:'auto'}}>
 
-<Burger ingredients={props.ingredients}/>
+ <Burger ingredients={props.ingredients}/>
      </div>
-<Buttton btnType="Danger" clicked> CANCLE
+<Buttton btnType="Danger" clicked = {props.checkoutCancle}> CANCLE
 </Buttton>
-<Buttton btnType="Success" clicked>
+<Buttton btnType="Success" clicked={props.checkoutContinue}>
 SUCCESS
 </Buttton>
     </div>
