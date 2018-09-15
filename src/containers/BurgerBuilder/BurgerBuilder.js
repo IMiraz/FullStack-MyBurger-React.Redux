@@ -20,17 +20,24 @@ const INGREDIENT_PRICE = {
 class BurgerBuilder extends Component
 {
     state = {
-        ingredients:{
-            salad:0,
-            bacon:0,
-            cheese:0,
-            meat:0
-        },
+        ingredients:null,
         totalPrice:4,
         purchasable:false,
         purchase:false,
- loading:false
+        loading:false
     }
+
+componentDidMount() {
+axios.get('https://react-myburger-miraz.firebaseio.com/ingredients.json')
+.then(response =>
+    {
+        this.setState({ingredients:response.data})
+        // this.setState({ingredients:res.data})
+    })
+;
+
+}
+
 
 updatePurchaseState(ingredients) {
 
@@ -121,26 +128,48 @@ deliveryMethod:'fastest'
 
 }
 
-
-
-
     render () {
 
-        let orderSummary = <OrderSummary ingredients={this.state.ingredients}
+        let orderSummary =null;
+        let burger = <Spineer/>
+
+if(this.state.ingredients)
+{
+    const disableInfo = {
+        ...this.state.ingredients
+    }
+    for(let key in disableInfo)
+    {
+        disableInfo[key]=disableInfo[key]<=0
+    }
+    console.log(this.state.ingredients);
+    burger =(
+     <Aux>
+        <Burger ingredients={this.state.ingredients} />
+        <BuildControls ingredientAdded ={this.addIngredientHandler}
+        removeIngredient={this.removeIngredientHandler}
+        totalprice = {this.state.totalPrice}
+        purchasable={this.state.purchasable}
+        disabled = {disableInfo}
+        orderd = {this.purchaseHandler}/>
+   </Aux>
+);
+     orderSummary=<OrderSummary ingredients={this.state.ingredients}
         purchaseContinue ={this.purchaseContinuewHandler}
         purchaseCancle={this.purchaseCancleHandler}
         totalprice ={this.state.totalPrice}/>
-if(this.state.loading){
-    orderSummary =<Spineer/>;
-}
 
-const disableInfo = {
-    ...this.state.ingredients
+
+ }
+
+ if(this.state.loading){
+    orderSummary =<Spineer/>;
 };
 
-for(let key in disableInfo){
-    disableInfo[key]=disableInfo[key]<=0
-}
+
+
+
+
 
 
         return (
@@ -148,14 +177,7 @@ for(let key in disableInfo){
  <Modal show={this.state.purchase} modalClose={this.purchaseCancleHandler}>
  {orderSummary}
             </Modal>
-            <Burger ingredients={this.state.ingredients} />
-<BuildControls ingredientAdded ={this.addIngredientHandler}
-   removeIngredient={this.removeIngredientHandler}
-   totalprice = {this.state.totalPrice}
-   purchasable={this.state.purchasable}
-   disabled = {disableInfo}
-   orderd = {this.purchaseHandler}/>
-
+{burger}
             </Aux>
 
         )
