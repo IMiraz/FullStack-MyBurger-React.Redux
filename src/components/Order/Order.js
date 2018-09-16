@@ -31,7 +31,7 @@ padding:'5px'
         <div className="">
          <div className={classes.Order}>
         <p>Ingredients : {IngredientOutput}</p>
-        <p>Price: <strong>{Number.parseFloat(props.price).toFixed(2)}</strong></p>
+        <p>Price: <strong>USD {Number.parseFloat(props.price).toFixed(2)}</strong></p>
         </div>
         </div>
     )
