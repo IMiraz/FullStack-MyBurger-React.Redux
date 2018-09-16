@@ -33,8 +33,13 @@ class Orders extends Component {
     render(){
         return (
             <div>
+             <h1 style={{
+                width:'50%',
+                margin:'15px auto'
+
+                }}>Your All Orders List</h1>
             {this.state.orders.map(order => (
-                <Order key={order.id} ingrdients={order.ingrdients} price={order.totalprice} />
+                <Order key={order.id}  ingredients={order.ingredients} price={order.totalprice} />
             )
 
 
