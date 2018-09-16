@@ -1,9 +1,9 @@
 .Lodiing{
-    display: inline-block;
-    position: relative;
-    width: 64px;
-    height: 64px;
-    margin: auto;
+  position: relative;
+	left: 50%;
+    width: 10em;
+    height: 10em;
+    margin-top:90px;
   }
   .Lodiing div {
     box-sizing: border-box;
@@ -12,10 +12,10 @@
     width: 51px;
     height: 51px;
     margin: auto;
-    border: 6px solid rgb(235, 202, 164);
+    border: 6px solid rgb(231, 72, 9);
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: rgb(235, 202, 164) transparent transparent transparent;
+    border-color: rgb(231, 72, 9) transparent transparent transparent;
   }
   .Lodiing div:nth-child(1) {
     animation-delay: -0.45s;
