@@ -21,6 +21,7 @@ class ContactData  extends Component {
  OrderHandler = (event) => {
      event.preventDefault();
      console.log(this.props.ingredients);
+     console.log(this.props.price);
 
  }
 
