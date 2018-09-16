@@ -45,7 +45,7 @@ this.setState({ ingredients:ingredients, totalprice:price})
   checkoutCancle ={this.checkoutCancleHandler}/>
 
   <Route path={this.props.match.path + '/contact-data'}
-  render = { () => (<ContactData ingredients={this.state.ingredients}  price={this.state.totalprice} />)}
+  render = { (props) => (<ContactData ingredients={this.state.ingredients}  price={this.state.totalprice} {...props} />)}
   />
 
               </div>
