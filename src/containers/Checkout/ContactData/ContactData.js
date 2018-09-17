@@ -42,7 +42,7 @@ elementType:'input',
 
         elementType:'input',
           elementConfig:{
-             type:'text',
+             type:'number',
              placeholder:'ZIP Code'
           },
          value:'',
@@ -100,18 +100,18 @@ elementType:'input',
       }
 
  checkValidity(value, rules) {
-  let isValid = false;
+  let isValid = true;
 
   if(rules.required)
    {
-       isValid = value.trim() !=='';
+       isValid = value.trim() !=='' && isValid;
   }
   if(rules.required) {
-    isValid = value.length >= rules.minLength
+    isValid = value.length >= rules.minLength && isValid;
                 }
 
   if(rules.required) {
-    isValid = value.length <= rules.maxLength
+    isValid = value.length <= rules.maxLength && isValid
   }
 
   return isValid;
