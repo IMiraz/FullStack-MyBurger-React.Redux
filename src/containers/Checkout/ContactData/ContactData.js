@@ -86,8 +86,35 @@ updatedFormElement.value = event.target.value;
 updatedOrderForm[inputIdentifire] = updatedFormElement;
 this.setState({orderForm:updatedOrderForm});
 
-
       }
+
+
+      OrderHandler = (event) => {
+        event.preventDefault();
+        // console.log(this.props.ingredients);
+        // console.log(this.props.price);
+        this.setState({
+           loading: true
+       });
+
+ const formData = {};
+for(let formElementIdentifire in this.state.orderForm) {
+formData[formElementIdentifire] = this.state.orderForm[formElementIdentifire].value
+}
+
+        const order = {
+           ingredients: this.props.ingredients,
+           totalprice: this.props.price,
+           orderData:formData
+       }
+        axios.post('/orders.json', order)
+        .then(respone => { this.setState({ loading: false })
+        this.props.history.push('/')
+        })
+           .catch(err => this.setState({
+                loading: false
+           }));
+     }
   render() {
 const formElementArray = []
 for(let key in this.state.orderForm)
@@ -100,7 +127,8 @@ for(let key in this.state.orderForm)
 }
 console.log(formElementArray)
 
-       let form = (<form>
+       let form = (
+           <form onSubmit={this.OrderHandler}>
 
 {formElementArray.map(formElement =>(
     <Input
@@ -112,11 +140,11 @@ change={(event)=> this.inputChangeHandler(event, formElement.id)}
     />
 
 ))}
+       <Button btnType="Success">ORDER</Button>
 
+        </form>
 
-       <Button btnType="Success" clicked={this.OrderHandler}>ORDER</Button>
-
-        </form>);
+    );
        if(this.state.loading) {
             form =<Spinner/>
        }
