@@ -8,20 +8,77 @@ import Input from '../../../components/UI/Input/Input'
 class ContactData  extends Component {
   state = {
 
-      contact: {
-   name:'',
-   phone:'',
-   email:'',
-     address:{
-   street:'',
-   postalCode:''
+      orderForm: {
+ name:{
 
-     }
+elementType:'input',
+  elementConfig:{
+     type:'text',
+     placeholder:'Your Name'
+  },
+ value:''
+ },
 
+ street:{
+
+    elementType:'input',
+      elementConfig:{
+         type:'text',
+         placeholder:'Street'
       },
-      loading:false
+     value:''
+     },
 
-  }
+     zipcode:{
+
+        elementType:'input',
+          elementConfig:{
+             type:'text',
+             placeholder:'ZIP Code'
+          },
+         value:''
+         },
+
+     country:{
+
+        elementType:'input',
+          elementConfig:{
+             type:'text',
+             placeholder:'Country'
+          },
+         value:''
+    },
+
+     email:{
+
+        elementType:'input',
+          elementConfig:{
+             type:'email',
+             placeholder:'Your E-Mail'
+          },
+         value:''
+    },
+
+
+    deliveryMethod:{
+
+        elementType:'select',
+          elementConfig:{
+              option:[
+        {value:'fastest', displayValue:'Fastest'},
+    {value:'cheapest', displayValue:'Cheapest'}
+            ]
+          },
+         value:''
+    }
+
+
+     },
+     loading:false
+      }
+
+
+
 
  OrderHandler = (event) => {
      event.preventDefault();
@@ -57,10 +114,10 @@ class ContactData  extends Component {
 
   render() {
        let form = (<form>
-        <Input inputType="input"  type="text" name="name" placeholder="your Name"/>
-        <Input inputType="input"  type="email" name="email" placeholder="your Email"/>
-        <Input inputType="input"  type="text" name="street" placeholder="Street"/>
-        <Input inputType="input"  type="text" name="postal" placeholder="Postal Code"/>
+        <Input elementType="..." elementConfig="..." value="..." />
+        <Input elementType="..." elementConfig="..." value="..." />
+        <Input elementType="..." elementConfig="..." value="..." />
+        <Input elementType="..." elementConfig="..." value="..." />
        <Button btnType="Success" clicked={this.OrderHandler}>ORDER</Button>
 
         </form>);
