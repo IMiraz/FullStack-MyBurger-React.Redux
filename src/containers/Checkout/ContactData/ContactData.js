@@ -61,10 +61,9 @@ elementType:'input',
 
 
     deliveryMethod:{
-
         elementType:'select',
           elementConfig:{
-              option:[
+              options:[
         {value:'fastest', displayValue:'Fastest'},
     {value:'cheapest', displayValue:'Cheapest'}
             ]
@@ -77,38 +76,20 @@ elementType:'input',
      loading:false
       }
 
-
-
-
  OrderHandler = (event) => {
      event.preventDefault();
-     this.setState({
-        loading: true
-    })
+    //  this.setState({
+    //     loading: true
+    // })
 
-    const order = {
-        ingredients: this.props.ingredients,
-        totalprice: this.props.price,
-        customer: {
-            name: 'tanvir hasan',
-            address: {
-                street: 'nikunja @2',
-                zipcode: '34543',
-                country: 'bangladesh'
-            },
-            email: 'tanvirhasan@gmail.com'
-        },
-        deliveryMethod: 'fastest'
-    }
+    // axios.post('/orders.json', order)
+    //     .then(respone => { this.setState({ loading: false })
+    //     this.props.history.push('/')
+    //     })
+    //     .catch(err => this.setState({
 
-    axios.post('/orders.json', order)
-        .then(respone => { this.setState({ loading: false })
-        this.props.history.push('/')
-        })
-        .catch(err => this.setState({
-
-            loading: false
-        }));
+    //         loading: false
+    //     }));
 
  }
 
@@ -132,7 +113,6 @@ key={formElement.id}
 elementType={formElement.config.elementType}
 elementConfig={formElement.config.elementConfig}
 value={formElement.config.value}
-
     />
 
 ))}
