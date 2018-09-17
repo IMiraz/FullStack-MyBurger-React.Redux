@@ -16,7 +16,11 @@ elementType:'input',
      type:'text',
      placeholder:'Your Name'
   },
- value:''
+ value:'',
+ validation:{
+    required:true
+     },
+     valid:false
  },
 
  street:{
@@ -26,7 +30,11 @@ elementType:'input',
          type:'text',
          placeholder:'Street'
       },
-     value:''
+     value:'',
+     validation:{
+        required:true
+         },
+         valid:false
      },
 
      zipcode:{
@@ -36,7 +44,11 @@ elementType:'input',
              type:'text',
              placeholder:'ZIP Code'
           },
-         value:''
+         value:'',
+         validation:{
+        required:true
+         },
+         valid:false
          },
 
      country:{
@@ -46,7 +58,11 @@ elementType:'input',
              type:'text',
              placeholder:'Country'
           },
-         value:''
+         value:'',
+         validation:{
+            required:true
+             },
+             valid:false
     },
 
      email:{
@@ -56,7 +72,11 @@ elementType:'input',
              type:'email',
              placeholder:'Your E-Mail'
           },
-         value:''
+         value:'',
+         validation:{
+            required:true
+             },
+             valid:false
     },
 
 
@@ -75,6 +95,18 @@ elementType:'input',
      },
      loading:false
       }
+
+ checkValidity(value, rules) {
+  let isValid = false;
+
+  if(rules.required) {
+       isValid = value.trim() !=='';
+  }
+
+  return isValid;
+ }
+
+
     inputChangeHandler = (event, inputIdentifire) => {
         const updatedOrderForm ={
     ...this.state.orderForm
@@ -83,7 +115,10 @@ elementType:'input',
 ...updatedOrderForm[inputIdentifire]
         };
 updatedFormElement.value = event.target.value;
+updatedFormElement.valid=this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
 updatedOrderForm[inputIdentifire] = updatedFormElement;
+console.log(updatedFormElement);
+
 this.setState({orderForm:updatedOrderForm});
 
       }
