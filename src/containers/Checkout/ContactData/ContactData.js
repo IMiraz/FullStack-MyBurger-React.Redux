@@ -19,6 +19,7 @@ elementType:'input',
  value:'',
  validation:{
     required:true
+
      },
      valid:false
  },
@@ -46,7 +47,9 @@ elementType:'input',
           },
          value:'',
          validation:{
-        required:true
+        required:true,
+        minLength:5,
+        maxLength:5
          },
          valid:false
          },
@@ -99,8 +102,16 @@ elementType:'input',
  checkValidity(value, rules) {
   let isValid = false;
 
-  if(rules.required) {
+  if(rules.required)
+   {
        isValid = value.trim() !=='';
+  }
+  if(rules.required) {
+    isValid = value.length >= rules.minLength
+                }
+
+  if(rules.required) {
+    isValid = value.length <= rules.maxLength
   }
 
   return isValid;
