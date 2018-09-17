@@ -75,24 +75,19 @@ elementType:'input',
      },
      loading:false
       }
+    inputChangeHandler = (event, inputIdentifire) => {
+        const updatedOrderForm ={
+    ...this.state.orderForm
+        };
+        const updatedFormElement = {
+...updatedOrderForm[inputIdentifire]
+        };
+updatedFormElement.value = event.target.value;
+updatedOrderForm[inputIdentifire] = updatedFormElement;
+this.setState({orderForm:updatedOrderForm});
 
- OrderHandler = (event) => {
-     event.preventDefault();
-    //  this.setState({
-    //     loading: true
-    // })
 
-    // axios.post('/orders.json', order)
-    //     .then(respone => { this.setState({ loading: false })
-    //     this.props.history.push('/')
-    //     })
-    //     .catch(err => this.setState({
-
-    //         loading: false
-    //     }));
-
- }
-
+      }
   render() {
 const formElementArray = []
 for(let key in this.state.orderForm)
@@ -113,6 +108,7 @@ key={formElement.id}
 elementType={formElement.config.elementType}
 elementConfig={formElement.config.elementConfig}
 value={formElement.config.value}
+change={(event)=> this.inputChangeHandler(event, formElement.id)}
     />
 
 ))}
