@@ -182,6 +182,7 @@ key={formElement.id}
 elementType={formElement.config.elementType}
 elementConfig={formElement.config.elementConfig}
 value={formElement.config.value}
+invalid ={!formElement.config.valid}
 change={(event)=> this.inputChangeHandler(event, formElement.id)}
     />
 
