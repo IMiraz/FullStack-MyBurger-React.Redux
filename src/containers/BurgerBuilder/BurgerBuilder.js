@@ -1,6 +1,8 @@
 import React, {
     Component
-} from 'react'
+} from 'react';
+
+import {connect} from 'react-redux';
 import axios from '../../axios-orders'
 import Aux from '../../hoc/Aux'
 import Burger from '../../components/Burger/Burger'
@@ -8,7 +10,9 @@ import BuildControls from '../../components/Burger/buildControls/buildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
 import Spineer from '../../components/UI/Spinner/Spinner'
-import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler'
+import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
+
+import * as actionTypes from '../../Store/actions';
 
 
 const INGREDIENT_PRICE = {
@@ -20,7 +24,6 @@ const INGREDIENT_PRICE = {
 
 class BurgerBuilder extends Component {
     state = {
-        ingredients: null,
         totalPrice: 4,
         purchasable: false,
         purchase: false,
@@ -139,26 +142,26 @@ this.props.history.push({
         let orderSummary = null;
         let burger = < Spineer / >
 
-            if (this.state.ingredients) {
+            if (this.props.ing) {
                 const disableInfo = {
-                    ...this.state.ingredients
+                    ...this.props.ing
                 }
                 for (let key in disableInfo) {
                     disableInfo[key] = disableInfo[key] <= 0
                 }
-                console.log(this.state.ingredients);
+                console.log(this.props.ing);
                 burger = ( <
                     Aux >
                     <
                     Burger ingredients = {
-                        this.state.ingredients
+                        this.props.ing
                     }
                     /> <
                     BuildControls ingredientAdded = {
-                        this.addIngredientHandler
+                        this.props.onIngredientAdded
                     }
                     removeIngredient = {
-                        this.removeIngredientHandler
+                        this.props.onIngredientRemove
                     }
                     totalprice = {
                         this.state.totalPrice
@@ -176,7 +179,7 @@ this.props.history.push({
                     /Aux>
                 );
                 orderSummary = < OrderSummary ingredients = {
-                    this.state.ingredients
+                    this.props.ing
                 }
                 purchaseContinue = {
                     this.purchaseContinuewHandler
@@ -217,5 +220,17 @@ this.props.history.push({
     }
 
 }
+ const mapStateToProps = state => {
+     return {
+    ing:state.ingredients
+     };
+ }
 
-export default WithErrorHandler(BurgerBuilder, axios);
+ const mapDispatchToProps = dispatch => {
+      return {
+onIngredientAdded:(ingName) =>dispatch({type:actionTypes.ADD_INGREDIENT,ingredientName:ingName}),
+onIngredientRemove:(ingName) =>dispatch({type:actionTypes.REMOVE_INGREDIENT,ingredientName:ingName})
+      }
+ }
+
+export default connect(mapStateToProps, mapDispatchToProps) (WithErrorHandler(BurgerBuilder, axios));
