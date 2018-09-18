@@ -143,16 +143,15 @@ updatedFormElement.touched=true;
 
 updatedOrderForm[inputIdentifire] = updatedFormElement;
 
-// let formIsValid = true;
+let formIsValid = true;
 
-// for(let inputIdentifire in updatedOrderForm)
-// {
-//     formIsValid = updatedOrderForm[inputIdentifire].valid && formIsValid;
+for(let inputIdentifire in updatedOrderForm)
+{
+     formIsValid = updatedOrderForm[inputIdentifire].valid && formIsValid;
 
-// }
-// console.log(formIsValid);
-console.log(updatedFormElement.touched)
-this.setState({orderForm:updatedOrderForm});
+}
+console.log(formIsValid);
+this.setState({orderForm:updatedOrderForm, formIsValid:formIsValid});
 
       }
 
