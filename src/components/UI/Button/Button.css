@@ -10,11 +10,11 @@
  box-shadow: 2px 2px 2px #966909;
  font-size:1.2em;
   margin-top:5px;
-  padding:0 2em;
+  width:150px;
   cursor:pointer;
   transition:800ms ease all;
   outline:none;
-  margin-left:5px;
+  margin-left:8px;
 }
 Button:hover{
   background:#fff;
