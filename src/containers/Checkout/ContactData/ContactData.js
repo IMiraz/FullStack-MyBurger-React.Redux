@@ -96,31 +96,38 @@ elementType:'input',
     {value:'cheapest', displayValue:'Cheapest'}
             ]
           },
-         value:''
+         value:'',
+         valid:true
     }
 
 
      },
+
+     formIsValid:false,
      loading:false
       }
 
  checkValidity(value, rules) {
-  let isValid = true;
+        let isValid = true;
+        if (!rules) {
+            return true;
+        }
+        
+        if (rules.required) {
+            isValid = value.trim() !== '' && isValid;
+        }
 
-  if(rules.required)
-   {
-       isValid = value.trim() !=='' && isValid;
-  }
-  if(rules.required) {
-    isValid = value.length >= rules.minLength && isValid;
-                }
+        if (rules.minLength) {
+            isValid = value.length >= rules.minLength && isValid
+        }
 
-  if(rules.required) {
-    isValid = value.length <= rules.maxLength && isValid
-  }
+        if (rules.maxLength) {
+            isValid = value.length <= rules.maxLength && isValid
+        }
 
-  return isValid;
- }
+        return isValid
+
+ }    
 
 
     inputChangeHandler = (event, inputIdentifire) => {
@@ -133,9 +140,18 @@ elementType:'input',
 updatedFormElement.value = event.target.value;
 updatedFormElement.valid=this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
 updatedFormElement.touched=true;
-updatedOrderForm[inputIdentifire] = updatedFormElement;
-console.log(updatedFormElement);
 
+updatedOrderForm[inputIdentifire] = updatedFormElement;
+
+// let formIsValid = true;
+
+// for(let inputIdentifire in updatedOrderForm)
+// {
+//     formIsValid = updatedOrderForm[inputIdentifire].valid && formIsValid;
+
+// }
+// console.log(formIsValid);
+console.log(updatedFormElement.touched)
 this.setState({orderForm:updatedOrderForm});
 
       }
@@ -195,7 +211,7 @@ change={(event)=> this.inputChangeHandler(event, formElement.id)}
     />
 
 ))}
-       <Button btnType="Success">ORDER</Button>
+       <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
 
         </form>
 
