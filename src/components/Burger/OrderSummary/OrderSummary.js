@@ -30,7 +30,7 @@ console.log('[OrderSummer] willupdate')
 <p>Total Price :{this.props.totalprice.toFixed(2)}</p>
 <p>Continure To Checkout ?</p>
 <Button btnType="Danger" clicked={this.props.purchaseCancle}>CANCEL</Button>
-<Button btnType="Success" clicked={this.props.purchaseContinue}>Continure</Button>
+<Button btnType="Success" clicked={this.props.purchaseContinue}>CONTINUE</Button>
 </Aux>
 
     );

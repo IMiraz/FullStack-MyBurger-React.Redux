@@ -202,21 +202,15 @@ this.props.history.push({
 
 
 
-        return ( <
-            Aux >
-            <
-            Modal show = {
+        return ( <Aux >
+            <Modal show = {
                 this.state.purchase
             }
             modalClose = {
                 this.purchaseCancleHandler
-            } > {
-                orderSummary
-            } <
-            /Modal> {
+            }> {orderSummary} </Modal> {
                 burger
-            } <
-            /Aux>
+            } </Aux>
 
         )
 
