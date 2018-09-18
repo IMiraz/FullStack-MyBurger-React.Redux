@@ -15,16 +15,10 @@ import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 import * as actionTypes from '../../Store/actions';
 
 
-const INGREDIENT_PRICE = {
-    salad: 0.5,
-    cheese: 0.4,
-    meat: 1.3,
-    bacon: 0.7
-}
+
 
 class BurgerBuilder extends Component {
     state = {
-        totalPrice: 4,
         purchasable: false,
         purchase: false,
         loading: false
@@ -59,44 +53,44 @@ class BurgerBuilder extends Component {
         });
 
     }
-    addIngredientHandler = (type) => {
-        const oldCount = this.state.ingredients[type];
-        const updatedCount = oldCount + 1;
-        const updatedIngredients = {
-            ...this.state.ingredients
-        };
-        updatedIngredients[type] = updatedCount;
-        const priceAddition = INGREDIENT_PRICE[type];
-        const oldprice = this.state.totalPrice;
-        const newprice = oldprice + priceAddition;
-        this.setState({
-            totalPrice: newprice,
-            ingredients: updatedIngredients
-        });
-        this.updatePurchaseState(updatedIngredients)
-    }
-    removeIngredientHandler = (type) => {
-        const oldCount = this.state.ingredients[type];
-        if (oldCount <= 0) {
-            return;
-        }
-        const updatedCount = oldCount - 1;
-        const updatedIngredients = {
-            ...this.state.ingredients
-        };
+    // addIngredientHandler = (type) => {
+    //     const oldCount = this.state.ingredients[type];
+    //     const updatedCount = oldCount + 1;
+    //     const updatedIngredients = {
+    //         ...this.state.ingredients
+    //     };
+    //     updatedIngredients[type] = updatedCount;
+    //     const priceAddition = INGREDIENT_PRICE[type];
+    //     const oldprice = this.state.totalPrice;
+    //     const newprice = oldprice + priceAddition;
+    //     this.setState({
+    //         totalPrice: newprice,
+    //         ingredients: updatedIngredients
+    //     });
+    //     this.updatePurchaseState(updatedIngredients)
+    // }
+    // removeIngredientHandler = (type) => {
+    //     const oldCount = this.state.ingredients[type];
+    //     if (oldCount <= 0) {
+    //         return;
+    //     }
+    //     const updatedCount = oldCount - 1;
+    //     const updatedIngredients = {
+    //         ...this.state.ingredients
+    //     };
 
-        updatedIngredients[type] = updatedCount;
-        const priceDeduction = INGREDIENT_PRICE[type];
-        const oldprice = this.state.totalPrice;
-        const newprice = oldprice - priceDeduction;
-        this.setState({
-            totalPrice: newprice,
-            ingredients: updatedIngredients
+    //     updatedIngredients[type] = updatedCount;
+    //     const priceDeduction = INGREDIENT_PRICE[type];
+    //     const oldprice = this.state.totalPrice;
+    //     const newprice = oldprice - priceDeduction;
+    //     this.setState({
+    //         totalPrice: newprice,
+    //         ingredients: updatedIngredients
 
-        })
-        this.updatePurchaseState(updatedIngredients)
+    //     })
+    //     this.updatePurchaseState(updatedIngredients)
 
-    }
+    // }
 
     purchaseHandler = () => {
         this.setState({
@@ -120,7 +114,7 @@ for(let i in this.state.ingredients)
 {
     queryParams.push(encodeURIComponent(i)+ '=' + encodeURIComponent(this.state.ingredients[i]));
 }
-queryParams.push('price=' + this.state.totalPrice)
+queryParams.push('price=' + this.props.price)
 
 const queryString = queryParams.join('&');
 
@@ -164,7 +158,7 @@ this.props.history.push({
                         this.props.onIngredientRemove
                     }
                     totalprice = {
-                        this.state.totalPrice
+                        this.props.price
                     }
                     purchasable = {
                         this.state.purchasable
@@ -188,7 +182,7 @@ this.props.history.push({
                     this.purchaseCancleHandler
                 }
                 totalprice = {
-                    this.state.totalPrice
+                    this.props.price
                 }
                 />
 
@@ -198,12 +192,6 @@ this.props.history.push({
         if (this.state.loading) {
             orderSummary = < Spineer / > ;
         };
-
-
-
-
-
-
 
         return ( <Aux >
             <Modal show = {
@@ -222,7 +210,8 @@ this.props.history.push({
 }
  const mapStateToProps = state => {
      return {
-    ing:state.ingredients
+    ing:state.ingredients,
+    price:state.totalPrice
      };
  }
 
