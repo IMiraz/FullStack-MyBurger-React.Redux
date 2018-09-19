@@ -12,7 +12,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
 import Spineer from '../../components/UI/Spinner/Spinner'
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 
-import * as actionTypes from '../../Store/actions';
+import * as burgerBuilderActions from '../../Store/actions/index';
 
 
 
@@ -210,8 +210,8 @@ this.props.history.push('/checkout')
 
  const mapDispatchToProps = dispatch => {
       return {
-onIngredientAdded:(ingName) =>dispatch({type:actionTypes.ADD_INGREDIENT,ingredientName:ingName}),
-onIngredientRemove:(ingName) =>dispatch({type:actionTypes.REMOVE_INGREDIENT,ingredientName:ingName})
+ onIngredientAdded:(ingName) =>dispatch(burgerBuilderActions.addIngredient(ingName)),
+onIngredientRemove:(ingName) =>dispatch(burgerBuilderActions.removeIngredient(ingName))
       }
  }
 
