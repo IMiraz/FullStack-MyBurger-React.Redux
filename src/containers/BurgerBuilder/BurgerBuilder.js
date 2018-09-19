@@ -193,9 +193,9 @@ this.props.history.push('/checkout')
 }
  const mapStateToProps = state => {
      return {
-    ing:state.ingredients,
-    price:state.totalPrice,
-    error:state.error
+    ing:state.burgerBuilder.ingredients,
+    price:state.burgerBuilder.totalPrice,
+    error:state.burgerBuilder.error
      };
  }
 
