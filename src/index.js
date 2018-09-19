@@ -5,7 +5,6 @@ import thunk from 'redux-thunk';
 import {createStore, applyMiddleware, compose} from 'redux';
 import './index.css';
 import App from './App';
-
 import {BrowserRouter} from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker';
 import burgerBuilderreducer from './Store/reducer/burgerBuilder'
