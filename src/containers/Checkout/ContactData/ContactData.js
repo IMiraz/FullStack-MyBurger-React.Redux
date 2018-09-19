@@ -114,7 +114,7 @@ elementType:'input',
         if (!rules) {
             return true;
         }
-        
+
         if (rules.required) {
             isValid = value.trim() !== '' && isValid;
         }
@@ -129,7 +129,7 @@ elementType:'input',
 
         return isValid
 
- }    
+ }
 
 
     inputChangeHandler = (event, inputIdentifire) => {
@@ -176,13 +176,13 @@ formData[formElementIdentifire] = this.state.orderForm[formElementIdentifire].va
            totalprice: this.props.price,
            orderData:formData
        }
-        axios.post('/orders.json', order)
-        .then(respone => { this.setState({ loading: false })
-        this.props.history.push('/')
-        })
-           .catch(err => this.setState({
-                loading: false
-           }));
+        // axios.post('/orders.json', order)
+        // .then(respone => { this.setState({ loading: false })
+        // this.props.history.push('/')
+        // })
+        //    .catch(err => this.setState({
+        //         loading: false
+        //    }));
      }
   render() {
 const formElementArray = []
