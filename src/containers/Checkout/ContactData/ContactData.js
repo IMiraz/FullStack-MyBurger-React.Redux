@@ -4,7 +4,8 @@ import Button from '../../../components/UI/Button/Button'
 import classes from './ContactData.css'
 import axios from '../../../axios-orders'
 import Spinner from '../../../components/UI/Spinner/Spinner';
-import Input from '../../../components/UI/Input/Input'
+import Input from '../../../components/UI/Input/Input';
+import withErrorHandler from '../../../hoc/WithErrorHandler/WithErrorHandler'
 
 
 class ContactData  extends Component {
@@ -239,5 +240,5 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps) (ContactData)
+export default connect(mapStateToProps) (withErrorHandler(ContactData, axios))
 
