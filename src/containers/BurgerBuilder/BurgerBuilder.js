@@ -26,14 +26,14 @@ class BurgerBuilder extends Component {
 
     componentDidMount() {
         console.log(this.props);
-        // axios.get('https://react-myburger-miraz.firebaseio.com/ingredients.json')
-        //     .then(response => {
-        //         this.setState({
-        //             ingredients: response.data
-        //         })
-        //         // this.setState({ingredients:res.data})
-        //     })
-        //     .catch(error => {})
+        axios.get('https://react-myburger-miraz.firebaseio.com/ingredients.json')
+            .then(response => {
+                this.setState({
+                    ingredients: response.data
+                })
+                // this.setState({ingredients:res.data})
+            })
+            .catch(error => {})
 
     }
 
