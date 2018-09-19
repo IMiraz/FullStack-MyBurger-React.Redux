@@ -47,14 +47,15 @@ elementType:'input',
 
         elementType:'input',
           elementConfig:{
-             type:'number',
+             type:'text',
              placeholder:'ZIP Code'
           },
          value:'',
          validation:{
         required:true,
         minLength:5,
-        maxLength:5
+        maxLength:5,
+        isNumeric: true
          },
          valid:false,
          touched:false
@@ -75,19 +76,19 @@ elementType:'input',
              touched:false
     },
 
-     email:{
-
-        elementType:'input',
-          elementConfig:{
-             type:'email',
-             placeholder:'Your E-Mail'
-          },
-         value:'',
-         validation:{
-            required:true
-             },
-             valid:false,
-             touched:false
+    email: {
+        elementType: 'input',
+        elementConfig: {
+            type: 'email',
+            placeholder: 'Your E-Mail'
+        },
+        value: '',
+        validation: {
+            required: true,
+            isEmail: true
+        },
+        valid: false,
+        touched: false
     },
 
 
@@ -126,6 +127,15 @@ elementType:'input',
 
         if (rules.maxLength) {
             isValid = value.length <= rules.maxLength && isValid
+        }
+
+        if (rules.isEmail) {
+            const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+            isValid = pattern.test(value) && isValid
+        }
+        if (rules.isNumeric) {
+            const pattern = /^\d+$/;
+            isValid = pattern.test(value) && isValid
         }
 
         return isValid
