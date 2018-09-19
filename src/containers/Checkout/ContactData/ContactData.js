@@ -6,7 +6,7 @@ import axios from '../../../axios-orders'
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';
 import withErrorHandler from '../../../hoc/WithErrorHandler/WithErrorHandler'
-
+import * as actions from '../../../Store/actions/index'
 
 class ContactData  extends Component {
   state = {
@@ -163,9 +163,9 @@ this.setState({orderForm:updatedOrderForm, formIsValid:formIsValid});
         event.preventDefault();
         // console.log(this.props.ingredients);
         // console.log(this.props.price);
-        this.setState({
-           loading: true
-       });
+    //     this.setState({
+    //        loading: true
+    //    });
 
  const formData = {};
 for(let formElementIdentifire in this.state.orderForm) {
@@ -184,6 +184,8 @@ formData[formElementIdentifire] = this.state.orderForm[formElementIdentifire].va
         //    .catch(err => this.setState({
         //         loading: false
         //    }));
+
+        this.props.onOrderBurger(order)
      }
   render() {
 const formElementArray = []
@@ -238,7 +240,11 @@ const mapStateToProps = state => {
         ings:state.ingredients,
         price:state.totalPrice
     }
-}
+};
+const mapDispatchToProps = dispatch => {
+    onOrderBurger:(orderData) => dispatch(actions.purchaseBurgerStart(orderData))
 
-export default connect(mapStateToProps) (withErrorHandler(ContactData, axios))
+};
+
+export default connect(mapStateToProps,mapDispatchToProps) (withErrorHandler(ContactData, axios))
 
