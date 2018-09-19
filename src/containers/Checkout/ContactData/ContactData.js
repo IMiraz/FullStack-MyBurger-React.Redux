@@ -219,7 +219,7 @@ change={(event)=> this.inputChangeHandler(event, formElement.id)}/>
         </form>
 
     );
-       if(this.state.loading) {
+       if(this.props.loading) {
             form =<Spinner/>
        }
 
@@ -238,11 +238,14 @@ change={(event)=> this.inputChangeHandler(event, formElement.id)}/>
 const mapStateToProps = state => {
     return {
         ings:state.ingredients,
-        price:state.totalPrice
+        price:state.totalPrice,
+        loading:state.loading
     }
 };
 const mapDispatchToProps = dispatch => {
-    onOrderBurger:(orderData) => dispatch(actions.purchaseBurgerStart(orderData))
+    return {
+        onOrderBurger:(orderData) => dispatch(actions.purchaseBurger(orderData))
+    }
 
 };
 
