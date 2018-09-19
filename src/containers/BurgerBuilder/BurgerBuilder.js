@@ -19,22 +19,11 @@ import * as burgerBuilderActions from '../../Store/actions/index';
 
 class BurgerBuilder extends Component {
     state = {
-        purchasable: false,
-        purchase: false,
-        loading: false
+        purchase: false
     }
 
     componentDidMount() {
         console.log(this.props);
-        axios.get('https://react-myburger-miraz.firebaseio.com/ingredients.json')
-            .then(response => {
-                this.setState({
-                    ingredients: response.data
-                })
-                // this.setState({ingredients:res.data})
-            })
-            .catch(error => {})
-
     }
 
 
@@ -128,7 +117,7 @@ this.props.history.push('/checkout')
     render() {
 
         let orderSummary = null;
-        let burger = < Spineer / >
+        let burger = this.state.error? <p>Ingredients can't be loaded ! </p>: < Spineer / >
 
             if (this.props.ing) {
                 const disableInfo = {
