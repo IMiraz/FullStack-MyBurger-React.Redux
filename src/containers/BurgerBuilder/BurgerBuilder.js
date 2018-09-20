@@ -12,7 +12,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
 import Spineer from '../../components/UI/Spinner/Spinner'
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 
-import * as burgerBuilderActions from '../../Store/actions/index';
+import * as actions from '../../Store/actions/index';
 
 
 
@@ -96,6 +96,7 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinuewHandler = () => {
+        this.props.onInitPurchase()
 this.props.history.push('/checkout')
 
 // const queryParams = [];
@@ -201,9 +202,10 @@ this.props.history.push('/checkout')
 
  const mapDispatchToProps = dispatch => {
       return {
- onIngredientAdded:(ingName) =>dispatch(burgerBuilderActions.addIngredient(ingName)),
-onIngredientRemove:(ingName) =>dispatch(burgerBuilderActions.removeIngredient(ingName)),
-onInitIngredients:() =>dispatch(burgerBuilderActions.initIngredients())
+ onIngredientAdded:(ingName) =>dispatch(actions.addIngredient(ingName)),
+onIngredientRemove:(ingName) =>dispatch(actions.removeIngredient(ingName)),
+onInitIngredients:() =>dispatch(actions.initIngredients()),
+onInitPurchase:() =>dispatch(actions.purchaseInit())
       }
  }
 
