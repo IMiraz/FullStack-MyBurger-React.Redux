@@ -202,10 +202,10 @@ this.props.history.push('/checkout')
 
  const mapDispatchToProps = dispatch => {
       return {
- onIngredientAdded:(ingName) =>dispatch(actions.addIngredient(ingName)),
-onIngredientRemove:(ingName) =>dispatch(actions.removeIngredient(ingName)),
-onInitIngredients:() =>dispatch(actions.initIngredients()),
-onInitPurchase:() =>dispatch(actions.purchaseInit())
+  onIngredientAdded:(ingName) =>dispatch(actions.addIngredient(ingName)),
+ onIngredientRemove:(ingName) =>dispatch(actions.removeIngredient(ingName)),
+ onInitIngredients:() =>dispatch(actions.initIngredients()),
+ onInitPurchase:() =>dispatch(actions.purchaseInit())
       }
  }
 
