@@ -7,7 +7,6 @@ export const purchaseBurgerSuccess = (id, orderData) => {
         type:actionTypes.PURCHASE_BURGER_SUCCESS,
         orderId:id,
         orderData:orderData
-
     };
 
 };
@@ -80,6 +79,8 @@ const purchaseBurgerStart = () => {
 
         export const fetchOrders = (orders) => {
             return dispatch => {
+
+                dispatch(fetchOrdersStart())
 
                 axios.get('/orders.json')
                 .then(res =>{
