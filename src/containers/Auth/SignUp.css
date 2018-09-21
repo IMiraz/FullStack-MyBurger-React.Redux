@@ -1,0 +1,14 @@
+.SignUP {
+    margin:50px auto;
+    width:80%;
+    text-align:center;
+    box-sizing: border-box;
+    border:1px solid#ccc;
+}
+
+
+@media (min-width:600px) {
+ .SignUP {
+     width:500px;
+ }
+}

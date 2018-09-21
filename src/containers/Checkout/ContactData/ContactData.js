@@ -44,7 +44,6 @@ elementType:'input',
      },
 
      zipcode:{
-
         elementType:'input',
           elementConfig:{
              type:'text',
