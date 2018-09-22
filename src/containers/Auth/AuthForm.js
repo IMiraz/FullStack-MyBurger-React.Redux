@@ -45,7 +45,7 @@ state = {
 
      formIsValid:false,
      loading:false,
-     isSignup:true
+     isSignup:false
 }
 
 checkValidity(value, rules) {
@@ -135,7 +135,10 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
  change={(event)=> this.inputChangeHandler(event, formElement.id)}
  />
 )
-        )
+)
+ if(this.props.loading) {
+      form=<Spinner/>
+ }
 
                 return (
                     <div>
@@ -143,16 +146,24 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
         <form onSubmit={this.submitHandler}>
     {form}
     <Button
-     btnType="Success" disabled={!this.state.formIsValid}>{this.state.isSignup? 'SIGN UP':'SIGN IN'}</Button>
+     btnType="Success">{this.state.isSignup? 'SIGN UP':'SIGN IN'}</Button>
         </form>
 
         <Button
         clicked={this.SwitchAuthMoodHandler}
-     btnType="Denger" >SWITCH TO {this.state.isSignup? 'SIGN UP':'SIGN IN'}</Button>
+     btnType="Denger" >SWITCH TO {!this.state.isSignup? 'SIGN UP':'SIGN IN'}</Button>
            </div>
 
            </div>
          )
+    }
+
+}
+
+const mapStateToProps = state => {
+    return {
+        loading:state.auth.loading
+
     }
 
 }
@@ -165,4 +176,4 @@ const mapDispatchToProps = dispatch => {
      };
 };
 
-export default connect(null,mapDispatchToProps)(AuthForm)
+export default connect(mapStateToProps,mapDispatchToProps)(AuthForm)
