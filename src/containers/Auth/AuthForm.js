@@ -136,13 +136,22 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
  />
 )
 )
- if(this.props.loading) {
-      form=<Spinner/>
- }
+            if(this.props.loading) {
+                form=<Spinner/>
+            }
+
+             let errorMessage = null
+
+             if(this.props.error) {
+             errorMessage = (
+            <p>{this.props.error.message}</p>
+             )
+             }
 
                 return (
                     <div>
            <div className={Classes.SignUP}>
+           {errorMessage}
         <form onSubmit={this.submitHandler}>
     {form}
     <Button
@@ -162,7 +171,8 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
 
 const mapStateToProps = state => {
     return {
-        loading:state.auth.loading
+        loading:state.auth.loading,
+        error:state.auth.error
 
     }
 
