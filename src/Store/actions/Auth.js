@@ -2,33 +2,33 @@ import * as actionTypes from './actionTypes'
 import axios from '../../axios-orders'
 
 
-export const signupStart = () =>
+export const authStart = () =>
         {
             return {
-                type:actionTypes.SIGNUP_START
+                type:actionTypes.AUTH_START
 
             };
         };
 
-        export const signupSuccess = (signupData) =>
+        export const authSuccess = (signupData) =>
         {
             return {
-                type:actionTypes.SIGNUP_SUCCESS,
+                type:actionTypes.AUTH_SUCCESS,
                 signupData:signupData
             };
         };
 
-        export const signupFail = (error) =>
+        export const authFail = (error) =>
          {
             return {
-                type:actionTypes.SIGNUP_FAIL,
+                type:actionTypes.AUTH_FAIL,
                 error:error
             };
         };
 
-export const signup = (email, password, isSignup) => {
+export const auth = (email, password, isSignup) => {
     return dispatch => {
-       dispatch(signupStart());
+       dispatch(authStart());
        const signupData = {
            email:email,
            password:password,
@@ -43,11 +43,11 @@ if(!isSignup) {
        axios.post(url,signupData)
        .then(response => {
             console.log(response);
-            dispatch(signupSuccess(response.data));
+            dispatch(authSuccess(response.data));
        })
        .catch(error => {
             console.log(error);
-            dispatch(signupFail(error));
+            dispatch(authFail(error));
        })
 
 

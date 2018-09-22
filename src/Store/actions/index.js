@@ -10,4 +10,4 @@ export {
     fetchOrders
 } from './order';
 
-export {signup} from './Signup'
+export {auth} from './Auth'

@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
-import Classes from './SignUp.css';
+import Classes from './AuthForm.css';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import * as actions from '../../Store/actions/index'
 
 
 
-class signUpForm extends Component {
+class AuthForm extends Component {
 state = {
      controls: {
         email: {
@@ -103,7 +103,7 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
 
   submitHandler = (event) => {
   event.preventDefault();
-  this.props.onSignup(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
+  this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
 
   }
 
@@ -148,7 +148,7 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
 
         <Button
         clicked={this.SwitchAuthMoodHandler}
-     btnType="Denger" style={{fontSize:'2px'}} >SWITCH TO {this.state.isSignup? 'SIGN UP':'SIGN IN'}</Button>
+     btnType="Denger" >SWITCH TO {this.state.isSignup? 'SIGN UP':'SIGN IN'}</Button>
            </div>
 
            </div>
@@ -160,9 +160,9 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
 const mapDispatchToProps = dispatch => {
 
      return {
-         onSignup:(email, password, isSignup) =>dispatch(actions.signup(email, password, isSignup))
+         onAuth:(email, password, isSignup) =>dispatch(actions.auth(email, password, isSignup))
 
      };
 };
 
-export default connect(null,mapDispatchToProps)(signUpForm)
+export default connect(null,mapDispatchToProps)(AuthForm)
