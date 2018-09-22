@@ -45,6 +45,7 @@ state = {
 
      formIsValid:false,
      loading:false,
+     isSignup:true
 }
 
 checkValidity(value, rules) {
@@ -102,8 +103,14 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
 
   submitHandler = (event) => {
   event.preventDefault();
-  this.props.onSignup(this.state.controls.email.value, this.state.controls.password.value);
+  this.props.onSignup(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
 
+  }
+
+  SwitchAuthMoodHandler = () => {
+  this.setState(previewState => {
+      return {isSignup: !previewState.isSignup}
+  })
   }
 
     render() {
@@ -116,7 +123,6 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
         });
 
         }
-
         let form = formElementArray.map(formElement =>(
      <Input
  key={formElement.id}
@@ -136,8 +142,13 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
            <div className={Classes.SignUP}>
         <form onSubmit={this.submitHandler}>
     {form}
-    <Button btnType="Success" disabled={!this.state.formIsValid}>SignUp</Button>
+    <Button
+     btnType="Success" disabled={!this.state.formIsValid}>{this.state.isSignup? 'SIGN UP':'SIGN IN'}</Button>
         </form>
+
+        <Button
+        clicked={this.SwitchAuthMoodHandler}
+     btnType="Denger" style={{fontSize:'2px'}} >SWITCH TO {this.state.isSignup? 'SIGN UP':'SIGN IN'}</Button>
            </div>
 
            </div>
@@ -149,7 +160,7 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
 const mapDispatchToProps = dispatch => {
 
      return {
-         onSignup:(email, password) =>dispatch(actions.signup(email, password))
+         onSignup:(email, password, isSignup) =>dispatch(actions.signup(email, password, isSignup))
 
      };
 };
