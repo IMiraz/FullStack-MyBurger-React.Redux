@@ -9,3 +9,5 @@ export {
     purchaseInit,
     fetchOrders
 } from './order';
+
+export {signup} from './Signup'

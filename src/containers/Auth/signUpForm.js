@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button'
-import Classes from './SignUp.css'
+import Button from '../../components/UI/Button/Button';
+import Classes from './SignUp.css';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import * as actions from '../../Store/actions/index'
+
 
 
 class signUpForm extends Component {
@@ -70,9 +74,6 @@ checkValidity(value, rules) {
 
 }
 
-
-
-
 inputChangeHandler = (event, controlName) => {
     const updatedControls ={
 ...this.state.controls,
@@ -81,11 +82,7 @@ inputChangeHandler = (event, controlName) => {
  value:event.target.value,
  valid: this.checkValidity(event.target.value, this.state.controls[controlName].validation),
  touched:true,
-
 }
-
-
-
     };
 
     this.setState({controls: updatedControls});
@@ -100,6 +97,12 @@ for(let controlName in updatedControls)
 }
 console.log(formIsValid);
 this.setState({controls:updatedControls, formIsValid:formIsValid});
+
+  }
+
+  submitHandler = (event) => {
+  event.preventDefault();
+  this.props.onSignup(this.state.controls.email.value, this.state.controls.password.value);
 
   }
 
@@ -126,23 +129,29 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
  change={(event)=> this.inputChangeHandler(event, formElement.id)}
  />
 )
-)
-
-
-
+        )
 
                 return (
+                    <div>
            <div className={Classes.SignUP}>
-        <form>
+        <form onSubmit={this.submitHandler}>
     {form}
     <Button btnType="Success" disabled={!this.state.formIsValid}>SignUp</Button>
         </form>
            </div>
+
+           </div>
          )
     }
 
-
-
 }
 
-export default signUpForm
+const mapDispatchToProps = dispatch => {
+
+     return {
+         onSignup:(email, password) =>dispatch(actions.signup(email, password))
+
+     };
+};
+
+export default connect(null,mapDispatchToProps)(signUpForm)

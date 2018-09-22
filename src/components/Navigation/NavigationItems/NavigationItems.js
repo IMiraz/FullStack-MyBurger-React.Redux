@@ -14,7 +14,7 @@ const NavigationItems = (props) =>
 Signup
 </NavigationItem>
 <NavigationItem link="/orders">
-Checkout
+Orders
 </NavigationItem>
 
 </ul>
