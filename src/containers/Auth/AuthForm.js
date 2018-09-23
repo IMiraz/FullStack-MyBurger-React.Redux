@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom'
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import Classes from './AuthForm.css';
@@ -113,7 +114,14 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
   })
   }
 
-    render() {
+
+
+
+
+    render()
+
+
+    {
         const formElementArray = []
         for(let key in this.state.controls)
         {
@@ -148,8 +156,17 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
              )
              }
 
+               let authRedirect = null
+
+               if(this.props.isAuthenticated)
+               {
+                   authRedirect=<Redirect to="/"/>
+
+               }
+
                 return (
                     <div>
+                    {authRedirect}
            <div className={Classes.SignUP}>
            {errorMessage}
         <form onSubmit={this.submitHandler}>
@@ -172,7 +189,8 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
 const mapStateToProps = state => {
     return {
         loading:state.auth.loading,
-        error:state.auth.error
+        error:state.auth.error,
+        isAuthenticated:state.auth.token
 
     }
 
