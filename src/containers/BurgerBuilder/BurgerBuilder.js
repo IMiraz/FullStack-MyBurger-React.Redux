@@ -89,9 +89,7 @@ class BurgerBuilder extends Component {
     }
 
     purchaseCancleHandler = () => {
-        this.setState({
-            purchase: false
-        });
+        this.setState({purchase: false});
 
     }
 
@@ -135,7 +133,11 @@ this.props.history.push('/checkout')
                     Burger ingredients = {
                         this.props.ing
                     }
-                    /> <BuildControls ingredientAdded = {
+                    />
+
+                    <BuildControls
+                    isAuth = {this.props.isAuthenticated}
+                    ingredientAdded = {
                         this.props.onIngredientAdded
                     }
                     removeIngredient = {
@@ -153,8 +155,8 @@ this.props.history.push('/checkout')
                     orderd = {
                         this.purchaseHandler
                     }
-                    /> <
-                    /Aux>
+                    />
+                    </Aux>
                 );
                 orderSummary = < OrderSummary ingredients = {
                     this.props.ing
@@ -168,6 +170,10 @@ this.props.history.push('/checkout')
                 totalprice = {
                     this.props.price
                 }
+
+
+
+
                 />
 
 
@@ -196,7 +202,8 @@ this.props.history.push('/checkout')
      return {
     ing:state.burgerBuilder.ingredients,
     price:state.burgerBuilder.totalPrice,
-    error:state.burgerBuilder.error
+    error:state.burgerBuilder.error,
+    isAuthenticated:state.auth.token !=null
      };
  }
 
