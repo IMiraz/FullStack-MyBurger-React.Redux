@@ -5,7 +5,8 @@ import {updateObject} from '../utility'
 const initialState = {
     ingredients:null,
         totalPrice: 4,
-        error:false
+        error:false,
+        building:false
 };
 
 const INGREDIENT_PRICE = {
@@ -20,7 +21,8 @@ const addIngredinet =(state, action) => {
         const updatedIngredinets=updateObject(state.ingredients,updatedIngredinet)
         const updatedState = {
             ingredients:updatedIngredinets,
-            totalPrice:state.totalPrice + INGREDIENT_PRICE[action.ingredientName]
+            totalPrice:state.totalPrice + INGREDIENT_PRICE[action.ingredientName],
+            building:true
         }
 
         return updateObject(state, updatedState);
@@ -31,7 +33,9 @@ const updatedIng ={[action.ingredientName]:state.ingredients[action.ingredientNa
                     const  updatedIngs=updateObject(state.ingredients,updatedIng);
                     const updatedSt = {
                             ingredients:updatedIngs,
-                            totalPrice:state.totalPrice - INGREDIENT_PRICE[action.ingredientName]
+                            totalPrice:state.totalPrice - INGREDIENT_PRICE[action.ingredientName],
+                            building:true
+
                         }
 
                 return updateObject(state, updatedSt);
@@ -46,8 +50,10 @@ const setIngredinet = (state, action) => {
   cheese:action.ingredients.cheese,
   meat:action.ingredients.meat
  },
+
    totalPrice:4,
-      error:false  
+      error:false,
+      building:false
  })
 
 }
@@ -84,7 +90,7 @@ const reducer = (state = initialState, action) =>
 
         // };
             case actionTypes.REMOVE_INGREDIENT:return removeIngredient(state, action)
-             
+
     //     return {
     //         ...state,
     //         ingredients: {
@@ -104,7 +110,7 @@ const reducer = (state = initialState, action) =>
                 //         }
 
                 // return updateObject(state, updatedSt);
-                    
+
 
   case actionTypes.SET_INGREDIENTS: return setIngredinet(state, action)
 
@@ -116,7 +122,7 @@ const reducer = (state = initialState, action) =>
 //   meat:action.ingredients.meat
 //  },
 //    totalPrice:4,
-//       error:false  
+//       error:false
 //  })
 
 //   return{

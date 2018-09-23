@@ -102,6 +102,15 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
 
   }
 
+  componentDidMount(){
+  if(!this.props.buildBurger && this.props.authRedirectPath !== '/')
+  {
+ this.props.onSetAuthRedirectPath();
+
+  }
+
+  }
+
   submitHandler = (event) => {
   event.preventDefault();
   this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
@@ -160,7 +169,7 @@ this.setState({controls:updatedControls, formIsValid:formIsValid});
 
                if(this.props.isAuthenticated)
                {
-                   authRedirect=<Redirect to="/"/>
+                   authRedirect=<Redirect to={this.props.authRedirectPath}/>
 
                }
 
@@ -190,7 +199,9 @@ const mapStateToProps = state => {
     return {
         loading:state.auth.loading,
         error:state.auth.error,
-        isAuthenticated:state.auth.token !==null
+        isAuthenticated:state.auth.token !==null,
+        buildBurger:state.burgerBuilder.building,
+        authRedirectPath:state.auth.authRedirectPath
 
     }
 
@@ -199,7 +210,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 
      return {
-         onAuth:(email, password, isSignup) =>dispatch(actions.auth(email, password, isSignup))
+         onAuth:(email, password, isSignup) =>dispatch(actions.auth(email, password, isSignup)),
+         onSetAuthRedirectPath:() => dispatch(actions.setAuthRedirectPath('/'))
 
      };
 };

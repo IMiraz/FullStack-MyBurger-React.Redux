@@ -87,6 +87,8 @@ class BurgerBuilder extends Component {
         }
 
         else {
+            this.props.onSetAuthRedirectPath('/checkout');
+
        this.props.history.push('/auth')
         }
 
@@ -140,6 +142,7 @@ this.props.history.push('/checkout')
                     />
 
                     <BuildControls
+
                     isAuth = {this.props.isAuthenticated}
                     ingredientAdded = {
                         this.props.onIngredientAdded
@@ -216,7 +219,8 @@ this.props.history.push('/checkout')
   onIngredientAdded:(ingName) =>dispatch(actions.addIngredient(ingName)),
  onIngredientRemove:(ingName) =>dispatch(actions.removeIngredient(ingName)),
  onInitIngredients:() =>dispatch(actions.initIngredients()),
- onInitPurchase:() =>dispatch(actions.purchaseInit())
+ onInitPurchase:() =>dispatch(actions.purchaseInit()),
+onSetAuthRedirectPath:(path) => dispatch(actions.setAuthRedirectPath(path))
       }
  }
 
