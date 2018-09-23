@@ -8,7 +8,8 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 class Orders extends Component {
 
     componentDidMount() {
-this.props.onFetchOrders()
+this.props.onFetchOrders(this.props.token)
+console.log(this.props.token)
         // axios.get('/orders.json')
         // .then(res =>{
         //     const fetchOrders = [];
@@ -31,18 +32,18 @@ this.props.onFetchOrders()
 
     }
     render(){
-        console.log(this.props.orders)
+        //console.log(this.props.orders)
          let orders= <Spinner/>
          if(!this.props.loading) {
-          
+
     orders=  <div>
     <h1 style={{width:'50%',margin:'15px auto'}}>Your All Orders List</h1>
                 {this.props.orders.map(order => (
                 <Order key={order.id}  ingredients={order.ingredients} price={order.totalprice} />
-            
+
             ))}
             </div>
-            
+
             }
 
 
@@ -61,15 +62,15 @@ const mapStateToProps = state => {
 
     return {
         orders:state.order.orders,
-        loading:state.order.loading
-
+        loading:state.order.loading,
+        token:state.auth.token
     }
 }
 
 const mapDispatchToprops = dispatch => {
 
     return {
-  onFetchOrders:() => dispatch(actions.fetchOrders())
+  onFetchOrders:(token) => dispatch(actions.fetchOrders(token))
     }
 }
 

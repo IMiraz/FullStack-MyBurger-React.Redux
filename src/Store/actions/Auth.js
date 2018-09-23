@@ -44,7 +44,7 @@ export const authStart = () =>
                 setTimeout(() => {
                dispatch(logout())
 
-                }, expirationTime)
+                }, expirationTime * 1000);
 
             };
 
@@ -59,6 +59,7 @@ export const auth = (email, password, isSignup) => {
            password:password,
            returnSecureToken:true
        };
+
 let url= 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyA6b0QEdi57X5XdwE1IySeuTobD0rwRO2g'
 if(!isSignup) {
     url='https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyA6b0QEdi57X5XdwE1IySeuTobD0rwRO2g'

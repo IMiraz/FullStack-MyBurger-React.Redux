@@ -77,12 +77,12 @@ const purchaseBurgerStart = () => {
 
             };
 
-        export const fetchOrders = (orders) => {
+        export const fetchOrders = (token) => {
             return dispatch => {
 
                 dispatch(fetchOrdersStart())
 
-                axios.get('/orders.json')
+                axios.get('/orders.json?auth='+ token)
                 .then(res =>{
                     const fetchOrders = [];
                     for(let key in res.data) {
