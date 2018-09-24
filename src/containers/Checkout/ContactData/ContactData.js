@@ -184,7 +184,8 @@ formData[formElementIdentifire] = this.state.orderForm[formElementIdentifire].va
         const order = {
            ingredients: this.props.ings,
            totalprice: this.props.price,
-           orderData:formData
+           orderData:formData,
+           userId:this.props.userId
        }
         // axios.post('/orders.json', order)
         // .then(respone => { this.setState({ loading: false })
@@ -213,14 +214,15 @@ console.log(formElementArray)
 
 {formElementArray.map(formElement =>(
     <Input
-key={formElement.id}
-elementType={formElement.config.elementType}
-elementConfig={formElement.config.elementConfig}
-value={formElement.config.value}
-invalid ={!formElement.config.valid}
-shouldValidate={formElement.config.validation}
-touched={formElement.config.touched}
-change={(event)=> this.inputChangeHandler(event, formElement.id)}/>
+        key={formElement.id}
+        elementType={formElement.config.elementType}
+        elementConfig={formElement.config.elementConfig}
+        value={formElement.config.value}
+        invalid ={!formElement.config.valid}
+        shouldValidate={formElement.config.validation}
+        touched={formElement.config.touched}
+        change={(event)=> this.inputChangeHandler(event, formElement.id)}
+/>
 
 ))}
        <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
@@ -249,7 +251,8 @@ const mapStateToProps = state => {
         ings:state.burgerBuilder.ingredients,
         price:state.burgerBuilder.totalPrice,
         loading:state.order.loading,
-        token:state.auth.token
+        token:state.auth.token,
+        userId:state.auth.userId
     }
 };
 const mapDispatchToProps = dispatch => {
