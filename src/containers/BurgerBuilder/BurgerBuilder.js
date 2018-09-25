@@ -23,7 +23,7 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props);
+        //console.log(this.props);
         this.props.onInitIngredients();
     }
 
@@ -96,7 +96,7 @@ class BurgerBuilder extends Component {
 
     purchaseCancleHandler = () => {
         this.setState({purchase: false});
-        console.log('cancle')
+        //console.log('cancle')
 
     }
 
@@ -133,7 +133,7 @@ this.props.history.push('/checkout')
                 for (let key in disableInfo) {
                     disableInfo[key] = disableInfo[key] <= 0
                 }
-                console.log(this.props.ing);
+                //console.log(this.props.ing);
                 burger = ( <
                     Aux >
                     <

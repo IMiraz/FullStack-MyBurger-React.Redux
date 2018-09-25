@@ -7,7 +7,7 @@ import Aux from '../../../hoc/Aux'
 class OrderSummary extends Component {
 
     componentWillUpdate() {
-console.log('[OrderSummer] willupdate')
+//console.log('[OrderSummer] willupdate')
 
     }
     render ()

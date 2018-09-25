@@ -97,7 +97,7 @@ for(let controlName in updatedControls)
      formIsValid = updatedControls[controlName].valid && formIsValid;
 
 }
-console.log(formIsValid);
+//console.log(formIsValid);
 this.setState({controls:updatedControls, formIsValid:formIsValid});
 
   }

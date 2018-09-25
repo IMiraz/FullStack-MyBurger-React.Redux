@@ -12,7 +12,7 @@ shouldComponentUpdate(nextProps, nextState) {
 }
 
 componentWillUpdate () {
-  console.log('[Modal] will update')
+  //console.log('[Modal] will update')
 
 }
 
