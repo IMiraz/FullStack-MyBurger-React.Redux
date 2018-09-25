@@ -96,6 +96,7 @@ class BurgerBuilder extends Component {
 
     purchaseCancleHandler = () => {
         this.setState({purchase: false});
+        console.log('cancle')
 
     }
 
