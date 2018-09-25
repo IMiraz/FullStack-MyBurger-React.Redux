@@ -6,8 +6,8 @@ import classes from './CheckoutSummary.css'
 const  checkoutSummary = (props) =>
 (
     <div className={classes.CheckoutSummary}>
-    <h1>We hope that it testy :) </h1>
-     <div style={{width:'250px', height:'300px'}}>
+    <h1>We hope that it testy! </h1>
+     <div>
  <Burger ingredients={props.ingredients}/>
      </div>
 <Buttton btnType="Danger" clicked = {props.checkoutCancle}> CANCLE

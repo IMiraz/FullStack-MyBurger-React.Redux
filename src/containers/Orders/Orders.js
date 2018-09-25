@@ -40,7 +40,7 @@ this.props.onFetchOrders(this.props.token, this.props.userId)
          }
 
          else {
-            messageShow =<h1 style={{width:'50%',margin:'15px auto'}}>You Didn't Order Yet :/</h1>
+            messageShow =<h1 style={{width:'50%',margin:'15px auto'}}>You Didn't ordered yet :/</h1>
          }
         //console.log(this.props.orders)
          let orders= <Spinner/>

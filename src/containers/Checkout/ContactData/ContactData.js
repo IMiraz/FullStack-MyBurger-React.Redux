@@ -185,7 +185,8 @@ formData[formElementIdentifire] = this.state.orderForm[formElementIdentifire].va
            ingredients: this.props.ings,
            totalprice: this.props.price,
            orderData:formData,
-           userId:this.props.userId
+           userId:this.props.userId,
+           orderCondition:this.props.orderCondition
        }
         // axios.post('/orders.json', order)
         // .then(respone => { this.setState({ loading: false })
@@ -252,7 +253,8 @@ const mapStateToProps = state => {
         price:state.burgerBuilder.totalPrice,
         loading:state.order.loading,
         token:state.auth.token,
-        userId:state.auth.userId
+        userId:state.auth.userId,
+
     }
 };
 const mapDispatchToProps = dispatch => {
