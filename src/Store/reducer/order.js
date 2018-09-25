@@ -5,7 +5,8 @@ import {updateObject} from '../utility'
 const initalState = {
     orders:[],
     loading:false,
-    purchased:false
+    purchased:false,
+    order:false
 };
 
 
@@ -16,7 +17,7 @@ const purchaseInt =(state, action) => {
 };
 
 const purchaseBurgerStart = (state, action) => {
-    
+
     return updateObject(state, {
       loading:true
   })
@@ -29,6 +30,7 @@ const purchaseBurgerSuccess = (state, action) => {
          return updateObject(state, {
               loading:false,
             purchased:true,
+            order:true,
            orders:state.orders.concat(newOrder)
           })
 };
@@ -135,12 +137,12 @@ const reducer =(state = initalState, action) => {
     // return updateObject(state, {
     //     loading:false
     // })
-    
+
         // return {
         // ...state,
         // loading:false
         // }
-   
+
 
 
 default: return state;

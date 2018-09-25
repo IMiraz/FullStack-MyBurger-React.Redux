@@ -32,12 +32,22 @@ this.props.onFetchOrders(this.props.token, this.props.userId)
 
     }
     render(){
+         let messageShow = null
+
+         if(this.props.order) {
+             console.log(this.props.orders)
+              messageShow =<h1 style={{width:'50%',margin:'15px auto'}}>Your All Orders List</h1>
+         }
+
+         else {
+            messageShow =<h1 style={{width:'50%',margin:'15px auto'}}>You Didn't Order Yet :/</h1>
+         }
         //console.log(this.props.orders)
          let orders= <Spinner/>
          if(!this.props.loading) {
-
     orders=  <div>
-    <h1 style={{width:'50%',margin:'15px auto'}}>Your All Orders List</h1>
+
+     {messageShow}
                 {this.props.orders.map(order => (
                 <Order key={order.id}  ingredients={order.ingredients} price={order.totalprice} />
 
@@ -62,7 +72,8 @@ const mapStateToProps = state => {
         orders:state.order.orders,
         loading:state.order.loading,
         token:state.auth.token,
-        userId:state.auth.userId
+        userId:state.auth.userId,
+        order:state.order.order
     }
 }
 
