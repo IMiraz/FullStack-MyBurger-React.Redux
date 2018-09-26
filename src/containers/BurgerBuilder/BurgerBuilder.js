@@ -19,7 +19,8 @@ import * as actions from '../../Store/actions/index';
 
 class BurgerBuilder extends Component {
     state = {
-        purchase: false
+        purchasing: false,
+        orderSummary: null
     }
 
     componentDidMount() {
@@ -83,20 +84,21 @@ class BurgerBuilder extends Component {
 
     purchaseHandler = () => {
         if(this.props.isAuthenticated){
-            this.setState({purchase: true});
+            this.setState({purchasing:true});
         }
 
         else {
             this.props.onSetAuthRedirectPath('/checkout');
-
        this.props.history.push('/auth')
         }
 
     }
 
     purchaseCancleHandler = () => {
-        this.setState({purchase: false});
-        //console.log('cancle')
+this.setState({purchasing: false,
+
+});
+console.log('purchasing condition:',this.state.purchasing)
 
     }
 
@@ -166,15 +168,14 @@ this.props.history.push('/checkout')
                     />
                     </Aux>
                 );
-                orderSummary = < OrderSummary ingredients = {
+                orderSummary = <OrderSummary
+                ingredients = {
                     this.props.ing
                 }
                 purchaseContinue = {
                     this.purchaseContinuewHandler
                 }
-                purchaseCancle = {
-                    this.purchaseCancleHandler
-                }
+                purchaseCancle = { () => { this.purchaseCancleHandler() } }
                 totalprice = {
                     this.props.price
                 }
@@ -183,8 +184,6 @@ this.props.history.push('/checkout')
 
 
                 />
-
-
             }
 
         if (this.state.loading) {
@@ -192,8 +191,8 @@ this.props.history.push('/checkout')
         };
 
         return ( <Aux >
-            <Modal show = {
-                this.state.purchase
+            <Modal show ={
+                this.state.purchasing
             }
             modalClose = {
                 this.purchaseCancleHandler
