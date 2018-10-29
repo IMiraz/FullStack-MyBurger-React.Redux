@@ -33,7 +33,7 @@ const purchaseBurgerStart = () => {
 
                         axios.post('/orders.json?auth='+token, orderData)
                         .then(response =>{
-                            console.log(response.data);
+                            // console.log(response.data);
                         dispatch(purchaseBurgerSuccess(response.data))
                         })
                         .catch(error => {

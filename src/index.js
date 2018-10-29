@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
+import {reducer as toastrReducer} from 'react-redux-toastr'
+import ReduxToastr from 'react-redux-toastr'
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
 import './index.css';
 import App from './App';
@@ -17,7 +20,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers ( {
 burgerBuilder:burgerBuilderreducer,
 order:orderReducer,
-auth:authReducer
+auth:authReducer,
+toastr:toastrReducer
 })
 
 const store=createStore(rootReducer,composeEnhancers(
@@ -29,6 +33,16 @@ const store=createStore(rootReducer,composeEnhancers(
 const app = (
     <Provider store={store}>
     <BrowserRouter>
+    <ReduxToastr
+          timeOut={4000}
+          newestOnTop={false}
+          preventDuplicates
+          position="bottom-right"
+          transitionIn="fadeIn"
+          transitionOut="fadeOut"
+          progressBar
+          closeOnToastrClick
+          />
     <App />
     </BrowserRouter>
  </Provider>

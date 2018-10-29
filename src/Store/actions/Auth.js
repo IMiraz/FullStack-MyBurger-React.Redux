@@ -1,3 +1,4 @@
+import {toastr} from 'react-redux-toastr'
 import * as actionTypes from './actionTypes'
 import axios from '../../axios-orders'
 
@@ -12,11 +13,22 @@ export const authStart = () =>
 
         export const authSuccess = (token, userId) =>
         {
-            return {
-                type:actionTypes.AUTH_SUCCESS,
-                idToken:token,
-                userId:userId
-            };
+
+            return async  dispatch => {
+                try {
+                    dispatch( {
+                        type:actionTypes.AUTH_SUCCESS,
+                        idToken:token,
+                        userId:userId
+                    })
+        
+                    toastr.success('Success!', 'You are logged in successfully')
+                   
+                }
+                catch(error) {
+                    toastr.error('Error !', 'Something Went Wrong ')
+                }
+            }
         };
 
         export const authFail = (error) =>
