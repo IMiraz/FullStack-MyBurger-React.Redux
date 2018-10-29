@@ -1,8 +1,15 @@
-## Fullstack-Blitz
+## Myburger
 
 ## About
 
- `this is  my learning based project done 90% work, I always wished I'd had a social network for event publishing to find other event publisher  to collaborate with. It's like Hoffyevent, except instead of dates it's for finding event location to city with and make tracks. View all users, view each user's profile and information,  see similar users in the sidebar. this is also can track users activity`
+The Myburger  which is an amazing fullstack application utilizing all the React js concepts
+and live updating using Firebase  integration. my burger built from scratch. It includes, firebase working signup, login, capabilities;
+ Styling of React components
+A deep dive into the internals of React and advanced component features
+How to access Http content from within React apps,
+Redux ... from basics to advanced!
+Forms and form validation in React apps
+Authentication more
 
  
 
@@ -17,6 +24,9 @@
 <img src="./src/assets/readme/log.png" width="800" height="400">
 
 - `When users starting adding ingredients`
+<img src="./src/assets/readme/whenuserstartingadd.png" width="800" height="400">
+
+- `order step one`
 <img src="./src/assets/readme/orderstarting.png" width="800" height="400">
 
 - `Order step two`
@@ -28,7 +38,7 @@
 
 - `Show simple orderlist`
 <img src="./src/assets/readme/orderlist.png" width="800" height="400">
-- `It's responsive for all device `
+- `It's responsive for all device`
 <img src="./src/assets/readme/responsive.png" width="800" height="400">
 
 - `firebase database desgin`
@@ -36,27 +46,27 @@
 
 
 
-
-
-
 ## Following technologies are used
 
  - `React`
  - `Redux` 
- - `Express`
- - `mongoose`
- - `Mlab database`
- - `Nodemoon`
- - `Redux-thunk`
- - `ReduxForm`
- - `Passport js`
- - `Gooogle passport 0auth`
- - `Body-parser`
- - `NPM`
- - `Stripe`
- - `Sendgrid`
- - `Cookie-session`
- - `Concurrently`
+ - `Firebase`
+ - `axios`
+ - `babel-core`
+ - `css-loader`
+ - `dotenv`
+ - `dotenv-expand`
+ - `enzyme`
+ - `enzyme-adapter-react-16`
+ - `eslint`
+ - `eslint-config-react-app`
+ - `redux-thunk`
+ - `webpack-dev-server`
+ - `react-redux-toastr`
+ - `react-router-dom`
+ - `react-test-renderer`
+ - `jest`
+ - `html-webpack-plugin`
   
  
      
@@ -68,7 +78,7 @@
 
 ## Scripts
 for starting please make sure that you have config file othwise it's don't working 
-- `npm run run dev` Start server in production environment
+- `yarn start` Start server in development environment
 
 
 
